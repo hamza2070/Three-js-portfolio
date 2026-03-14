@@ -1,0 +1,213 @@
+/* ═══════════════════════════════════════
+ *  Contact Section — Full Redesign
+ * ═══════════════════════════════════════ */
+.contact-section {
+  margin: auto;
+  padding-bottom: 60px;
+  margin-top: 60px;
+  position: relative;
+  z-index: 2;
+  background-color: var(--backgroundColor);
+}
+
+/* ── CTA Header ── */
+.contact-cta {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contact-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accentColor);
+  opacity: 0.7;
+}
+
+.contact-section h3 {
+  font-size: 32px;
+  font-weight: 600;
+  text-transform: none;
+  margin: 6px 0 12px;
+  font-family: "Space Grotesk", sans-serif;
+  line-height: 1.2;
+}
+
+.contact-section h3 > span {
+  background: linear-gradient(135deg, var(--accentColor), var(--accentColorAlt));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-desc {
+  font-size: 14px;
+  color: rgba(232, 230, 240, 0.45);
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Main 2-col layout ── */
+.contact-main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.contact-info-col {
+  width: 100%;
+}
+
+.contact-form-col {
+  width: 100%;
+}
+
+/* ── Info Cards ── */
+.contact-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-flex h4 {
+  font-weight: 500;
+  margin: 0;
+  opacity: 0.4;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  background: var(--surfaceColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 16px;
+  padding: 22px;
+  transition: all 0.3s ease;
+}
+
+.contact-box:hover {
+  border-color: rgba(167, 139, 250, 0.22);
+  box-shadow: 0 4px 24px rgba(167, 139, 250, 0.04);
+}
+
+.contact-flex p {
+  margin-top: 4px;
+  margin-bottom: 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  word-break: break-word;
+}
+
+.contact-flex p:last-child {
+  margin-bottom: 0;
+}
+
+a.contact-social {
+  font-size: 17px;
+  border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "Inter", sans-serif;
+}
+
+a.contact-social:hover {
+  border-color: var(--accentColor);
+}
+
+/* ── Footer ── */
+.contact-footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid var(--borderColor);
+  text-align: center;
+}
+
+.contact-footer h2 {
+  font-weight: 400;
+  font-size: 15px;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  color: rgba(232, 230, 240, 0.5);
+}
+
+.contact-footer h2 > span {
+  color: var(--accentColor);
+}
+
+.contact-footer h5 {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  opacity: 0.3;
+  font-family: "Inter", sans-serif;
+  margin-top: 6px;
+}
+
+.contact-container {
+  width: calc(100% - 15px);
+}
+
+/* ═══════════════════════════════
+ *  Responsive
+ * ═══════════════════════════════ */
+@media only screen and (min-width: 600px) {
+  .contact-section h3 { font-size: 38px; }
+  .contact-desc { font-size: 16px; }
+  .contact-container { width: 100%; }
+  .contact-flex { flex-direction: row; gap: 16px; }
+  .contact-box { flex: 1; }
+}
+
+@media only screen and (min-width: 768px) {
+  .contact-section h3 { font-size: 44px; }
+  .contact-cta { margin-bottom: 60px; }
+  a.contact-social { font-size: 19px; }
+}
+
+@media only screen and (min-width: 900px) {
+  .contact-section { margin-top: 100px; padding-bottom: 80px; }
+  .contact-footer { margin-top: 80px; }
+  .contact-footer h2 { font-size: 17px; }
+}
+
+@media only screen and (min-width: 1025px) {
+  .contact-main {
+    flex-direction: row;
+    gap: 50px;
+    align-items: flex-start;
+  }
+  .contact-info-col {
+    width: 340px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 120px;
+  }
+  .contact-form-col { flex: 1; }
+  .contact-flex { flex-direction: column; gap: 20px; }
+  .contact-box { flex: none; }
+  .contact-section h3 { font-size: 50px; }
+  .contact-desc { font-size: 18px; }
+  .contact-label { font-size: 12px; }
+  .contact-footer h2 { font-size: 20px; }
+}
+
+@media only screen and (min-width: 1600px) {
+  .contact-section h3 { font-size: 60px; }
+  a.contact-social { font-size: 22px; }
+  .contact-info-col { width: 380px; }
+}

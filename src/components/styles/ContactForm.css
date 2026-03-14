@@ -1,0 +1,477 @@
+/* ═══════════════════════════════════════════════
+ *  ContactForm — Premium Glass-morphism Design
+ * ═══════════════════════════════════════════════ */
+
+/* ── Wrapper ── */
+.cf-wrapper {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 0 0;
+  position: relative;
+}
+
+/* ── Header ── */
+.cf-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cf-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accentColor);
+  opacity: 0.7;
+}
+
+.cf-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 6px 0 12px;
+  line-height: 1.2;
+}
+
+.cf-title > span {
+  background: linear-gradient(135deg, var(--accentColor), var(--accentColorAlt));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cf-subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(232, 230, 240, 0.45);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Form ── */
+.cf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Two-column row ── */
+.cf-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ═══════════════════════════════
+ *  Field — glass card style
+ * ═══════════════════════════════ */
+.cf-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cf-field-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(232, 230, 240, 0.45);
+  transition: color 0.3s ease;
+}
+
+.cf-field-label svg {
+  font-size: 15px;
+  color: var(--accentColor);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+/* ── Input / Textarea shared ── */
+.cf-field input,
+.cf-field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #e8e6f0;
+  background: var(--surfaceColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  resize: none;
+  -webkit-appearance: none;
+  user-select: auto;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+}
+
+.cf-field input::placeholder,
+.cf-field textarea::placeholder {
+  color: rgba(232, 230, 240, 0.2);
+  font-weight: 300;
+}
+
+/* ── Focus state ── */
+.cf-field input:focus,
+.cf-field textarea:focus {
+  border-color: var(--accentColor);
+  background: rgba(167, 139, 250, 0.08);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.08),
+    0 4px 24px rgba(167, 139, 250, 0.06);
+}
+
+.cf-field input:focus + .cf-field-label,
+.cf-field textarea:focus + .cf-field-label {
+  color: var(--accentColor);
+}
+
+.cf-field input:focus ~ .cf-field-label svg,
+.cf-field textarea:focus ~ .cf-field-label svg {
+  opacity: 1;
+}
+
+/* ── Valid state ── */
+.cf-field--valid input,
+.cf-field--valid textarea {
+  border-color: rgba(74, 222, 128, 0.3);
+}
+
+.cf-field--valid .cf-field-label {
+  color: rgba(74, 222, 128, 0.7);
+}
+
+.cf-field--valid .cf-field-label svg {
+  color: rgba(74, 222, 128, 0.8);
+  opacity: 1;
+}
+
+/* ── Error state ── */
+.cf-field--error input,
+.cf-field--error textarea {
+  border-color: rgba(248, 113, 113, 0.5);
+  background: rgba(248, 113, 113, 0.04);
+}
+
+.cf-field--error .cf-field-label {
+  color: rgba(248, 113, 113, 0.8);
+}
+
+.cf-field--error .cf-field-label svg {
+  color: rgba(248, 113, 113, 0.8);
+  opacity: 1;
+}
+
+/* ── Error message ── */
+.cf-error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(248, 113, 113, 0.9);
+  animation: cfShake 0.4s ease;
+}
+
+.cf-error svg {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+@keyframes cfShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+
+/* ── Character count ── */
+.cf-char-count {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: rgba(232, 230, 240, 0.2);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════
+ *  Submit Button
+ * ═══════════════════════════════ */
+.cf-submit {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 32px;
+  margin-top: 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(167, 139, 250, 0.2));
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cf-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.55), rgba(167, 139, 250, 0.35));
+  border-color: var(--accentColor);
+  box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2),
+    0 0 60px rgba(167, 139, 250, 0.06);
+  transform: translateY(-2px);
+}
+
+.cf-submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(167, 139, 250, 0.15);
+}
+
+.cf-submit:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cf-submit-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.cf-submit-content svg {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.cf-submit:hover:not(:disabled) .cf-submit-content svg {
+  transform: translateX(3px);
+}
+
+/* ── Animated gradient glow behind button ── */
+.cf-submit-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(167, 139, 250, 0.15),
+    transparent,
+    rgba(167, 139, 250, 0.1),
+    transparent
+  );
+  animation: cfGlowSpin 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.cf-submit:hover:not(:disabled) .cf-submit-glow {
+  opacity: 1;
+}
+
+@keyframes cfGlowSpin {
+  100% { transform: rotate(360deg); }
+}
+
+/* ── Sending state ── */
+.cf-submit--sending {
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(167, 139, 250, 0.15));
+}
+
+/* ── Success state ── */
+.cf-submit--success {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.3), rgba(74, 222, 128, 0.15));
+  border-color: rgba(74, 222, 128, 0.4);
+  pointer-events: none;
+}
+
+.cf-submit--success .cf-submit-content svg {
+  color: rgba(74, 222, 128, 0.9);
+  animation: cfPop 0.4s ease;
+}
+
+@keyframes cfPop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* ── Loading spinner ── */
+.cf-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: cfSpin 0.7s linear infinite;
+}
+
+@keyframes cfSpin {
+  100% { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════
+ *  Toast Notification
+ * ═══════════════════════════════ */
+.cf-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--borderColor);
+  background: rgba(6, 2, 15, 0.9);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  max-width: calc(100vw - 40px);
+}
+
+.cf-toast--visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cf-toast--success {
+  border-color: rgba(74, 222, 128, 0.25);
+}
+
+.cf-toast--error {
+  border-color: rgba(248, 113, 113, 0.25);
+}
+
+.cf-toast-icon {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.cf-toast--success .cf-toast-icon {
+  color: rgba(74, 222, 128, 0.9);
+}
+
+.cf-toast--error .cf-toast-icon {
+  color: rgba(248, 113, 113, 0.9);
+}
+
+.cf-toast-msg {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(232, 230, 240, 0.8);
+  line-height: 1.4;
+}
+
+.cf-toast-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: rgba(232, 230, 240, 0.3);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.cf-toast-close:hover {
+  color: rgba(232, 230, 240, 0.8);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ═══════════════════════════════
+ *  Responsive
+ * ═══════════════════════════════ */
+@media only screen and (min-width: 500px) {
+  .cf-title { font-size: 36px; }
+  .cf-subtitle { font-size: 15px; }
+}
+
+@media only screen and (min-width: 600px) {
+  .cf-row {
+    flex-direction: row;
+    gap: 16px;
+  }
+  .cf-row > .cf-field { flex: 1; }
+  .cf-title { font-size: 40px; }
+}
+
+@media only screen and (min-width: 768px) {
+  .cf-wrapper { padding: 80px 0 0; }
+  .cf-header { margin-bottom: 48px; }
+  .cf-title { font-size: 44px; }
+  .cf-subtitle { font-size: 16px; }
+  .cf-label { font-size: 11px; }
+  .cf-form { gap: 22px; }
+
+  .cf-field input,
+  .cf-field textarea {
+    padding: 16px 18px;
+    font-size: 16px;
+    border-radius: 14px;
+  }
+
+  .cf-submit {
+    padding: 18px 36px;
+    font-size: 17px;
+    border-radius: 16px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .cf-wrapper { max-width: 780px; }
+  .cf-title { font-size: 48px; }
+  .cf-label { font-size: 12px; }
+  .cf-row { gap: 20px; }
+
+  .cf-submit {
+    width: auto;
+    align-self: flex-start;
+    padding: 18px 48px;
+  }
+}
+
+/* ── Toast mobile positioning ── */
+@media only screen and (max-width: 600px) {
+  .cf-toast {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    max-width: none;
+  }
+}
