@@ -1,7 +1,6 @@
 // Lightweight ScrollSmoother replacement using native smooth scrolling
 export class ScrollSmoother {
   private wrapper: HTMLElement | null;
-  private content: HTMLElement | null;
   private isPaused: boolean = false;
 
   constructor(config: {
@@ -14,7 +13,6 @@ export class ScrollSmoother {
     ignoreMobileResize?: boolean;
   }) {
     this.wrapper = document.querySelector(config.wrapper);
-    this.content = document.querySelector(config.content);
 
     if (this.wrapper) {
       this.wrapper.style.overflow = "auto";
@@ -39,8 +37,7 @@ export class ScrollSmoother {
 
   scrollTo(
     target: string | number,
-    smooth?: boolean,
-    position?: string
+    smooth?: boolean
   ): void {
     if (this.isPaused) return;
 
