@@ -48,7 +48,7 @@ const Contact = () => {
                   Github <MdArrowOutward />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/syed-ameer-hamza-gillani"
+                  href="https://www.linkedin.com/in/syed-ameer-hamza-gillani-b55259260/-b55259260/"
                   target="_blank"
                   data-cursor="disable"
                   className="contact-social"
