@@ -50,9 +50,8 @@
   padding: 5px 14px;
   border: 1px solid var(--borderColor);
   border-radius: 50px;
-  background: var(--surfaceColor);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  background: rgba(6, 2, 15, 0.85);
+  transition: border-color 0.3s ease, color 0.3s ease;
   white-space: nowrap;
   max-width: 50vw;
   overflow: hidden;

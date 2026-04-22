@@ -62,10 +62,8 @@ export class ScrollSmoother {
     return this.isPaused;
   }
 
-  static refresh(hard?: boolean): void {
-    // Trigger a reflow
-    if (hard) {
-      window.dispatchEvent(new Event("resize"));
-    }
+  static refresh(_hard?: boolean): void {
+    // Force layout recalculation without triggering resize events
+    document.body.offsetHeight;
   }
 }

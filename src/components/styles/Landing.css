@@ -23,9 +23,7 @@
   position: fixed;
   width: 200px;
   height: 200px;
-  background-color: #a78bfa;
-  box-shadow: inset -50px 40px 50px rgba(139, 92, 246, 0.6);
-  filter: blur(60px);
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.5) 0%, transparent 70%);
   border-radius: 50%;
   animation: loadingCircle 6s linear infinite;
   opacity: 0.5;
@@ -59,9 +57,7 @@
   display: none;
   width: 200px;
   height: 200px;
-  background-color: #8b5cf6;
-  box-shadow: inset -50px 40px 50px rgba(139, 92, 246, 0.6);
-  filter: blur(60px);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
   border-radius: 50%;
   animation: loadingCircle2 6s linear infinite;
   opacity: 0.4;
@@ -95,7 +91,6 @@
   background: var(--surfaceColor);
   padding: 5px 12px;
   border-radius: 50px;
-  backdrop-filter: blur(10px);
 }
 
 .landing-name {
@@ -183,9 +178,7 @@
   width: 300px;
   height: 300px;
   z-index: 1;
-  background-color: #8b5cf6;
-  box-shadow: inset 66px 35px 85px 0px rgba(139, 92, 246, 0.65);
-  filter: blur(50px);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.65) 0%, transparent 70%);
   border-radius: 50%;
   top: 50%;
   left: 50%;
@@ -262,6 +255,7 @@
   top: inherit;
   z-index: 9;
   text-align: center;
+  opacity: 0;
 }
 
 .landing-info h3 {
@@ -273,45 +267,15 @@
   font-family: "Inter", sans-serif;
 }
 
-.landing-info h2 {
-  margin: 0;
-  margin-top: -14px;
-  margin-left: 15px;
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 32px;
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.landing-h2-info-1 { position: absolute; top: 0; }
-
 h2.landing-info-h2 {
   color: var(--accentColor);
   font-size: 30px;
-  width: 120%;
   margin: 0;
+  margin-top: -14px;
   font-family: "Space Grotesk", sans-serif;
   font-weight: 600;
-  position: relative;
-  margin-left: -5px;
-}
-
-.landing-h2-2 { position: absolute; top: 0; }
-
-.landing-info-h2::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 120%;
-  z-index: 3;
-  background-image: linear-gradient(0deg, var(--backgroundColor) 40%, rgba(0, 0, 0, 0) 110%);
-  top: 0;
-  left: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 /* ── RESPONSIVE ── */
@@ -328,7 +292,6 @@ h2.landing-info-h2 {
   .landing-name { font-size: 50px; }
   .landing-badge { font-size: 11px; }
   .landing-info h3 { font-size: 18px; }
-  .landing-info h2 { font-size: 30px; line-height: 36px; }
   h2.landing-info-h2 { font-size: 36px; }
 }
 
@@ -338,8 +301,7 @@ h2.landing-info-h2 {
   .landing-tagline { font-size: 16px; }
   .landing-badge { font-size: 12px; padding: 6px 16px; }
   .landing-info h3 { font-size: 25px; }
-  .landing-info h2 { font-size: 45px; line-height: 42px; margin-top: -20px; }
-  h2.landing-info-h2 { font-size: 55px; }
+  h2.landing-info-h2 { font-size: 55px; margin-top: -20px; }
   .scroll-line { height: 40px; }
   .landing-scroll-hint span { font-size: 10px; }
 }
@@ -394,6 +356,5 @@ h2.landing-info-h2 {
   .landing-badge { font-size: 13px; padding: 8px 20px; }
   .landing-tagline { font-size: 18px; }
   .landing-info h3 { font-size: 35px; }
-  .landing-info h2 { font-size: 65px; line-height: 62px; }
   h2.landing-info-h2 { font-size: 75px; }
 }

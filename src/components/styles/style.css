@@ -21,3 +21,283 @@
   transform: translateY(-100%);
   color: var(--accentColor);
 }
+
+/* Tech Stack Grid */
+.techstack {
+  padding: 100px 20px 100px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  overflow: visible;
+  background: var(--backgroundColor);
+  clear: both;
+  z-index: 5;
+}
+
+.techstack h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 60px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  position: relative;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-grid:not(.expanded) {
+  grid-template-rows: repeat(2, 1fr);
+  overflow: hidden;
+}
+
+.tech-grid:not(.expanded) .tech-item:nth-child(n+9) {
+  display: none;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 28px 20px;
+  background: rgba(17, 12, 34, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 16px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tech-item:nth-child(1) { animation-delay: 0.05s; }
+.tech-item:nth-child(2) { animation-delay: 0.1s; }
+.tech-item:nth-child(3) { animation-delay: 0.15s; }
+.tech-item:nth-child(4) { animation-delay: 0.2s; }
+.tech-item:nth-child(5) { animation-delay: 0.25s; }
+.tech-item:nth-child(6) { animation-delay: 0.3s; }
+.tech-item:nth-child(7) { animation-delay: 0.35s; }
+.tech-item:nth-child(8) { animation-delay: 0.4s; }
+.tech-grid.expanded .tech-item:nth-child(9) { animation-delay: 0.45s; }
+.tech-grid.expanded .tech-item:nth-child(10) { animation-delay: 0.5s; }
+.tech-grid.expanded .tech-item:nth-child(11) { animation-delay: 0.55s; }
+.tech-grid.expanded .tech-item:nth-child(12) { animation-delay: 0.6s; }
+.tech-grid.expanded .tech-item:nth-child(13) { animation-delay: 0.65s; }
+.tech-grid.expanded .tech-item:nth-child(14) { animation-delay: 0.7s; }
+.tech-grid.expanded .tech-item:nth-child(15) { animation-delay: 0.75s; }
+.tech-grid.expanded .tech-item:nth-child(16) { animation-delay: 0.8s; }
+.tech-grid.expanded .tech-item:nth-child(17) { animation-delay: 0.85s; }
+
+.tech-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.tech-item:hover::before {
+  opacity: 1;
+}
+
+.tech-item:hover {
+  background: rgba(17, 12, 34, 0.9);
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.3);
+}
+
+.tech-icon {
+  font-size: 48px;
+  transition: transform 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-item:hover .tech-icon {
+  transform: scale(1.15);
+}
+
+.tech-item span {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(232, 230, 240, 0.9);
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.tech-item:hover span {
+  color: #ffffff;
+}
+
+.view-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto;
+  padding: 14px 28px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 50px;
+  color: var(--accentColor);
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.view-more-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.view-more-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.view-more-btn:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.3);
+}
+
+.view-more-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.chevron-icon {
+  font-size: 20px;
+  position: relative;
+  z-index: 1;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .techstack {
+    padding: 300px 20px 80px;
+  }
+  
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .tech-grid:not(.expanded) {
+    grid-template-rows: repeat(4, 1fr);
+  }
+  
+  .techstack h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  
+  .tech-item {
+    padding: 24px 16px;
+  }
+  
+  .tech-icon {
+    font-size: 40px;
+  }
+  
+  .tech-item span {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .techstack {
+    padding: 380px 40px 120px;
+  }
+  
+  .techstack h2 {
+    font-size: 48px;
+    margin-bottom: 70px;
+  }
+  
+  .tech-grid {
+    gap: 28px;
+    margin-bottom: 50px;
+  }
+  
+  .tech-item {
+    padding: 36px 24px;
+  }
+  
+  .tech-icon {
+    font-size: 64px;
+  }
+  
+  .tech-item span {
+    font-size: 15px;
+  }
+  
+  .view-more-btn {
+    font-size: 16px;
+    padding: 16px 32px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .tech-grid {
+    gap: 32px;
+  }
+}

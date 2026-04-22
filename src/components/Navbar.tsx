@@ -37,9 +37,18 @@ const Navbar = () => {
         }
       });
     });
-    window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
-    });
+    let resizeDebounce: number;
+    const handleNavResize = () => {
+      clearTimeout(resizeDebounce);
+      resizeDebounce = window.setTimeout(() => {
+        ScrollSmoother.refresh(false);
+      }, 200);
+    };
+    window.addEventListener("resize", handleNavResize);
+    return () => {
+      clearTimeout(resizeDebounce);
+      window.removeEventListener("resize", handleNavResize);
+    };
   }, []);
   return (
     <>

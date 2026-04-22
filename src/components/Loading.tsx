@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
@@ -9,29 +9,35 @@ const Loading = ({ percent }: { percent: number }) => {
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
-
-  if (percent >= 100) {
-    setTimeout(() => {
-      setLoaded(true);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 1000);
-    }, 600);
-  }
+  const hasTriggeredLoad = useRef(false);
 
   useEffect(() => {
-    import("./utils/initialFX").then((module) => {
-      if (isLoaded) {
+    if (percent >= 100 && !hasTriggeredLoad.current) {
+      hasTriggeredLoad.current = true;
+      const t1 = setTimeout(() => {
+        setLoaded(true);
+        const t2 = setTimeout(() => {
+          setIsLoaded(true);
+        }, 200);
+        return () => clearTimeout(t2);
+      }, 100);
+      return () => clearTimeout(t1);
+    }
+  }, [percent]);
+
+  useEffect(() => {
+    if (isLoaded) {
+      import("./utils/initialFX").then((module) => {
         setClicked(true);
         setTimeout(() => {
           if (module.initialFX) {
             module.initialFX();
           }
           setIsLoading(false);
-        }, 900);
-      }
-    });
-  }, [isLoaded]);
+        }, 300);
+      });
+    }
+  }, [isLoaded, setIsLoading]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget: target } = e;
@@ -94,42 +100,65 @@ export default Loading;
 
 export const setProgress = (setLoading: (value: number) => void) => {
   let percent: number = 0;
+  let rafId: number | null = null;
+  let lastTime = 0;
+  let phase: "fake-fast" | "fake-slow" | "paused" | "finishing" | "done" = "fake-fast";
+  let finishResolve: ((value: number) => void) | null = null;
 
-  let interval = setInterval(() => {
-    if (percent <= 50) {
-      let rand = Math.round(Math.random() * 5);
-      percent = percent + rand;
+  const tick = (time: number) => {
+    if (phase === "done" || phase === "paused") return;
+
+    const elapsed = time - lastTime;
+
+    if (phase === "fake-fast" && elapsed > 50) {
+      lastTime = time;
+      percent = Math.min(percent + Math.round(Math.random() * 5), 50);
       setLoading(percent);
-    } else {
-      clearInterval(interval);
-      interval = setInterval(() => {
-        percent = percent + Math.round(Math.random());
-        setLoading(percent);
-        if (percent > 91) {
-          clearInterval(interval);
-        }
-      }, 2000);
+      if (percent >= 50) phase = "fake-slow";
+    } else if (phase === "fake-slow" && elapsed > 200) {
+      lastTime = time;
+      percent = Math.min(percent + Math.round(Math.random() * 2), 91);
+      setLoading(percent);
+      if (percent >= 91) phase = "paused";
+    } else if (phase === "finishing" && elapsed > 10) {
+      lastTime = time;
+      percent = Math.min(percent + 2, 100);
+      setLoading(percent);
+      if (percent >= 100) {
+        phase = "done";
+        if (finishResolve) finishResolve(percent);
+        return;
+      }
     }
-  }, 100);
+
+    rafId = requestAnimationFrame(tick);
+  };
+
+  rafId = requestAnimationFrame(tick);
 
   function clear() {
-    clearInterval(interval);
+    phase = "done";
+    if (rafId) cancelAnimationFrame(rafId);
     setLoading(100);
+  }
+
+  function setRealProgress(value: number) {
+    // Update displayed value if it's higher than current, but don't kill the loop
+    if (value > percent) {
+      percent = value;
+      setLoading(value);
+    }
   }
 
   function loaded() {
     return new Promise<number>((resolve) => {
-      clearInterval(interval);
-      interval = setInterval(() => {
-        if (percent < 100) {
-          percent++;
-          setLoading(percent);
-        } else {
-          resolve(percent);
-          clearInterval(interval);
-        }
-      }, 2);
+      finishResolve = resolve;
+      phase = "finishing";
+      lastTime = 0;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(tick);
     });
   }
-  return { loaded, percent, clear };
+
+  return { loaded, percent, clear, setRealProgress };
 };
