@@ -6,7 +6,7 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Senior Software Developer with 3+ years of experience architecting and
+          Senior Software Developer with 5+ years of experience architecting and
           delivering production-grade React Native and full-stack SaaS applications.
           Deep expertise in scalable backend architecture, secure JWT/RBAC
           multi-tenant authentication, Stripe payment integrations, Docker, CI/CD
@@ -14,7 +14,7 @@ const About = () => {
         </p>
         <div className="about-stats">
           <div className="stat-card">
-            <h4>3+</h4>
+            <h4>5+</h4>
             <span>Years Experience</span>
           </div>
           <div className="stat-card">
